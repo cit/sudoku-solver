@@ -1,0 +1,71 @@
+Sudoku-Solver
+
+* Why
+This was my programming-project at the modul "Introduction to C-Programming" at my university of applied sciences. It solves every puzzle with the degree of difficulty from easy to medium. I think it's clear and readable code. If you disagree or have any suggestions how the program could be improved, I'd be glad if you dropped me a line. (cit at ccc-r dot de).
+
+* Algorithm
+My program solves puzzles in two steps:
+
+** 1. Rule-Algorithm
+This algorithm solves all easy puzzles. At first it searches for the first empty field and then it checks horizontal, vertical and in a 3x3 box, in case there is a violation against the rule. If there isn't, there is a possibility for a valid number. If there is only one possibility, we found our solution for this field.
+
+** 2. Advanced-Algorithm
+This is a little bit more complex. At first it creates an empty bitmuster. This is the complete puzzle only with 0 and 1. Afterwards, it looks at the 3x3 box and checks wheater or not there is a number. If there is, than it fills the number 1 in. The next step is to check the four other lines beside the field.
+
+There are always two vertical and two horizontal lines. Than it checks the four lines for a number. If the number is found, it fills the complete line with 1. At the end, it counts the number of 1. If in a 3x3 box 8x 1er, we have a unambiguous solution for this field.
+
+* Compile
+$ /usr/bin/gcc -Wall -Winit-self -march=i386 sudoku.c -o sudoku-solver
+
+* Run
+$ ./sudoku -r 009078046000000780000900102350040000700000005000020034107005000063
+000000240630900
+
+Sudoku
+|---------------------------------|
+|  0  0  9 |  0  7  8 |  0  4  6  |
+|  0  0  0 |  0  0  0 |  7  8  0  |
+|  0  0  0 |  9  0  0 |  1  0  2  |
+|---------------------------------|
+|  3  5  0 |  0  4  0 |  0  0  0  |
+|  7  0  0 |  0  0  0 |  0  0  5  |
+|  0  0  0 |  0  2  0 |  0  3  4  |
+|---------------------------------|
+|  1  0  7 |  0  0  5 |  0  0  0  |
+|  0  6  3 |  0  0  0 |  0  0  0  |
+|  2  4  0 |  6  3  0 |  9  0  0  |
+|---------------------------------|
+
+Regel-Algorithmus
+|---------------------------------|
+|  5  0  9 |  0  7  8 |  3  4  6  |
+|  0  0  0 |  0  0  0 |  7  8  9  |
+|  0  0  0 |  9  6  0 |  1  5  2  |
+|---------------------------------|
+|  3  5  0 |  0  4  0 |  0  0  0  |
+|  7  0  0 |  0  0  0 |  0  0  5  |
+|  0  0  0 |  0  2  0 |  0  3  4  |
+|---------------------------------|
+|  1  0  7 |  0  0  5 |  0  0  0  |
+|  0  6  3 |  0  0  0 |  0  0  0  |
+|  2  4  0 |  6  3  0 |  9  0  0  |
+|---------------------------------|
+
+Advanced-Algorithmus
+|---------------------------------|
+|  5  2  9 |  1  7  8 |  3  4  6  |
+|  6  3  1 |  4  5  2 |  7  8  9  |
+|  4  7  8 |  9  6  3 |  1  5  2  |
+|---------------------------------|
+|  3  5  2 |  8  4  9 |  6  1  7  |
+|  7  8  4 |  3  1  6 |  2  9  5  |
+|  9  1  6 |  5  2  7 |  8  3  4  |
+|---------------------------------|
+|  1  9  7 |  2  8  5 |  4  6  3  |
+|  8  6  3 |  7  9  4 |  5  2  1  |
+|  2  4  5 |  6  3  1 |  9  7  8  |
+|---------------------------------|
+
+* Links
+** http://markbyers.com/moinmoin/moin.cgi?ShortestSudokuSolver
+** http://erdgeist.org/arts/software/Sudoku.html
